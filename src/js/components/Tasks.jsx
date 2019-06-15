@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getData, selectPage } from "../actions/index";
-import { getRemoteTasks, getCurrentPage } from "../selectors/index";
+import {selectors} from "../selectors/index";
 import { RenderPageNumbers } from "./PageNumbers"
 
 
@@ -13,10 +13,9 @@ class ConnectedPosts extends React.Component {
 
 
   render() {
-    const that = this;
     return (
       <ul className="list-group list-group-flush">
-        {that.props.remoteTasks.map((el, index) => (
+        {this.props.remoteTasks.map((el, index) => (
           <li className="list-group-item" key={index}>
             <p><strong>id:</strong> {el.id}</p>
             <p><strong>username:</strong> {el.username}</p>
@@ -26,7 +25,7 @@ class ConnectedPosts extends React.Component {
         ))}
 
         <ul id="page-numbers" style = {{ listStyle: "none", display: "flex" }}>
-          <RenderPageNumbers state = {that.handleClick}/>
+          <RenderPageNumbers state = {this.handleClick}/>
         </ul>
       </ul>
     )
@@ -35,8 +34,10 @@ class ConnectedPosts extends React.Component {
 };
 
 const mapStateToProps = state => ({
-  remoteTasks: getRemoteTasks(state),
-  currentPage: getCurrentPage(state)
+  remoteTasks: selectors.getRemoteTasks(state),
+  currentPage: selectors.getCurrentPage(state),
+  tasksQuantity: selectors.getTasksQuantity(state),
+  errors: selectors.getErrors(state)
 });
 
 const mapDispatchToProps = dispatch => ({
