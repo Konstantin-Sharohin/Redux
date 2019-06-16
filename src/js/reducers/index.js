@@ -4,22 +4,35 @@ const initialState = {
   doneTasks: [],
   remoteTasks: [],
   tasksQuantity: 0,
+  pages: [],
   errors: [],
   currentPage: 1
 };
 
 export default (state = initialState, action) => {
+
+  const pagination = () => {
+    let pagesArray = [],
+    tasksQuantity = parseInt(action.tasksQuantity);
+      for (let i = 0; i <= Math.ceil(tasksQuantity / 3); i++) {
+        pagesArray.push(i);
+      }
+      return pagesArray;
+  };
+
   if (action.type === GET_DATA) {
+    const pages = pagination();
     return {
       ...state,
-      remoteTasks: [...action.payload.tasks],
-      tasksQuantity: parseInt(action.tasksQuantity)
+      remoteTasks: [...action.payload],
+      tasksQuantity: parseInt(action.tasksQuantity),
+      pages: [...pages]
     }
   } else if (action.type === PUT_DATA) {
       if (action.status === "ok") {
           return {
             ...state,
-            remoteTasks: [...action.payload.tasks]
+            remoteTasks: action.payload
           }
       } else {
           return {
@@ -28,11 +41,13 @@ export default (state = initialState, action) => {
       }
   }
   } else if (action.type === PAGE_SELECTED && action.status === "ok") {
+    const pages = pagination();
     return {
       ...state,
-      remoteTasks: [...action.payload.tasks],
+      remoteTasks: [...action.payload],
       currentPage: parseInt(action.currentPage),
-      tasksQuantity: parseInt(action.tasksQuantity)
+      tasksQuantity: parseInt(action.tasksQuantity),
+      pages: [...pages]
     }
   }
   

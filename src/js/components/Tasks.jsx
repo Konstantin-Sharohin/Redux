@@ -1,14 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getData, selectPage } from "../actions/index";
-import {selectors} from "../selectors/index";
-import { RenderPageNumbers } from "./PageNumbers";
+import { selectors } from "../selectors/index";
+import RenderPageNumbers from "./PageNumbers";
 import PropTypes from 'prop-types';
 
 
 class ConnectedPosts extends React.Component {
 
-  componentDidMount = () => this.props.getData();
+  componentDidMount = () => {
+    this.props.getData();
+  }
 
   handleClick = event => this.props.selectPage(parseInt(event.target.id, 10));
 
@@ -24,10 +26,7 @@ class ConnectedPosts extends React.Component {
             <p><strong>task:</strong> {el.text}</p>
           </li>
         ))}
-
-        <ul id="page-numbers" style = {{ listStyle: "none", display: "flex" }}>
-          <RenderPageNumbers state = {this.handleClick}/>
-        </ul>
+          <RenderPageNumbers handleClick={this.handleClick} pages={this.props.pages}/>
       </ul>
     )
   }
@@ -38,7 +37,8 @@ const mapStateToProps = state => ({
   remoteTasks: selectors.getRemoteTasks(state),
   currentPage: selectors.getCurrentPage(state),
   tasksQuantity: selectors.getTasksQuantity(state),
-  errors: selectors.getErrors(state)
+  errors: selectors.getErrors(state),
+  pages: selectors.getPages(state)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -51,6 +51,7 @@ ConnectedPosts.propTypes = {
   remoteTasks: PropTypes.array,
   currentPage: PropTypes.number,
   tasksQuantity: PropTypes.number,
+  pages: PropTypes.array,
   errors: PropTypes.array,
   getData: PropTypes.func,
   selectPage: PropTypes.func

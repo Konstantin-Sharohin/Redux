@@ -3,6 +3,7 @@ export const selectors = {
     getRemoteTasks: state => state.remoteTasks,
     getCurrentPage: state => state.currentPage,
     getTasksQuantity: state => state.tasksQuantity,
-    getErrors: state => state.errors
+    getErrors: state => state.errors,
+    getPages: state => state.pages
 }
 
