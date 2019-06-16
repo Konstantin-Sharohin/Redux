@@ -13,7 +13,7 @@ export default (state = initialState, action) => {
 
   const pagination = () => {
     let pagesArray = [],
-    tasksQuantity = parseInt(action.tasksQuantity);
+    tasksQuantity = action.tasksQuantity;
       for (let i = 0; i <= Math.ceil(tasksQuantity / 3); i++) {
         pagesArray.push(i);
       }
@@ -37,7 +37,7 @@ export default (state = initialState, action) => {
       } else {
           return {
             ...state,
-            errors: [...state.errors, action.message]
+            errors: [...state.errors, Array(action.message)]
       }
   }
   } else if (action.type === PAGE_SELECTED && action.status === "ok") {
