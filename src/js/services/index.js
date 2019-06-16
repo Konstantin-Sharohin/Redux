@@ -56,7 +56,7 @@ class API {
   };
 
 
-  async filterEmail(page) {
+  async sortByEmail(page) {
     const url = `${API_ENDPOINT}?developer=Konstantin&page=${page}&sort_field=email`;
     const response = await fetch(url);
 

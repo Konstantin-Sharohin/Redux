@@ -1,6 +1,6 @@
 .sort-email {
     position: absolute;
-    top: 80%;
+    top: 80vh;
     left: -70px;
     background: rgb(212, 206, 119);
     box-shadow: 0 7px 7px rgba(0, 0, 0, 0.25);
@@ -15,10 +15,18 @@
     outline: none;
   }
 
+  .sort-email:active {
+    top: 80.3vh;
+    box-shadow: none;
+    transition: top 0.5s;
+    outline: none;
+  }
+
   .sort-email:hover {
-    background-color: rgb(85, 85, 85);
+    background: rgb(85, 85, 85);
     color: rgb(255, 255, 255);
-    transition: all 1s;
+    outline: none;
+    transition: background 1s, color 1s;
   }
 
   .sort-email-title {

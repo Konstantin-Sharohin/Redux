@@ -48,11 +48,11 @@ export const selectPage = (page) =>
   }
 
 
-  export const filterEmail = () =>
+  export const sortByEmail = () =>
   async (dispatch, getState) => {
     const { currentPage } = getState();
     try {
-      const data = await API.filterEmail(currentPage);
+      const data = await API.sortByEmail(currentPage);
       dispatch({
         type: SORT_EMAIL,
         payload: data.message.tasks,

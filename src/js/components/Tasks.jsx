@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getData, selectPage, filterEmail } from "../actions/index";
+import { getData, selectPage, sortByEmail } from "../actions/index";
 import { selectors } from "../selectors/index";
 import PageNumbers from "./PageNumbers";
 import SortByEmail from "./SortByEmail";
@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getData: () => dispatch(getData()),
   selectPage: page => dispatch(selectPage(page)),
-  filterEmail: () => dispatch(filterEmail())
+  sortByEmail: () => dispatch(sortByEmail())
 });
 
 
