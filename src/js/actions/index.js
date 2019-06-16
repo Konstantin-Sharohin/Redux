@@ -28,7 +28,7 @@ export const selectPage = (page) =>
     const { currentPage } = getState();
     try {
       const tasks = await API.selectPage(page);
-      dispatch({ type: PAGE_SELECTED, payload: tasks.message.tasks, currentPage: currentPage, status: tasks.status });
+      dispatch({ type: PAGE_SELECTED, payload: tasks.message, currentPage: currentPage, status: tasks.status });
     } catch (error) {
       console.error(error);
     }

@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { getData, selectPage } from "../actions/index";
 import {selectors} from "../selectors/index";
-import { RenderPageNumbers } from "./PageNumbers"
+import { RenderPageNumbers } from "./PageNumbers";
+import PropTypes from 'prop-types';
 
 
 class ConnectedPosts extends React.Component {
@@ -45,6 +46,15 @@ const mapDispatchToProps = dispatch => ({
   selectPage: page => dispatch(selectPage(page))
 });
 
+
+ConnectedPosts.propTypes = {
+  remoteTasks: PropTypes.array,
+  currentPage: PropTypes.number,
+  tasksQuantity: PropTypes.number,
+  errors: PropTypes.array,
+  getData: PropTypes.func,
+  selectPage: PropTypes.func
+};
 
 const Tasks = connect(mapStateToProps, mapDispatchToProps)(ConnectedPosts);
 
