@@ -1,14 +1,14 @@
 import React from "react";
 
 
-const RenderPageNumbers = (props) => {
+const PageNumbers = (props) => {
     return <ul id="page-numbers" style={{ listStyle: "none", display: "flex" }}>
         {props.pages.map(number => {
             return (
                 <li style={{ marginRight: "1em", fontSize: "1.2em", color: "orange", userSelect: "none", cursor: "pointer" }}
                     key={number}
                     id={number}
-                    onClick={props.handleClick}
+                    onClick={props.selectPage}
                 >
                     {number}
                 </li>
@@ -18,7 +18,7 @@ const RenderPageNumbers = (props) => {
 };
 
 
-export default RenderPageNumbers;
+export default PageNumbers;
 
 
 

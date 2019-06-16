@@ -1,3 +1,4 @@
 export const PUT_DATA = "PUT_DATA";
 export const GET_DATA = "GET_DATA";
-export const PAGE_SELECTED = "PAGE_SELECTED";
+export const SELECT_PAGE = "SELECT_PAGE";
+export const SORT_EMAIL = "SORT_EMAIL";

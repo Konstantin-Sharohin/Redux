@@ -1,4 +1,4 @@
-import { PUT_DATA, GET_DATA, PAGE_SELECTED } from "../constants/action-types";
+import { PUT_DATA, GET_DATA, SELECT_PAGE, SORT_EMAIL } from "../constants/action-types";
 
 const initialState = {
   doneTasks: [],
@@ -40,7 +40,7 @@ export default (state = initialState, action) => {
             errors: [...state.errors, Array(action.message)]
       }
   }
-  } else if (action.type === PAGE_SELECTED && action.status === "ok") {
+  } else if ((action.type === SELECT_PAGE || action.type === SORT_EMAIL) && action.status === "ok") {
     const pages = pagination();
     return {
       ...state,

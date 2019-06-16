@@ -1,4 +1,4 @@
-import { GET_DATA, PUT_DATA, PAGE_SELECTED } from "../constants/action-types";
+import { GET_DATA, PUT_DATA, SELECT_PAGE, SORT_EMAIL } from "../constants/action-types";
 import API from "../services/index";
 
 export const getData = () =>
@@ -36,7 +36,25 @@ export const selectPage = (page) =>
     try {
       const data = await API.selectPage(page);
       dispatch({
-        type: PAGE_SELECTED,
+        type: SELECT_PAGE,
+        payload: data.message.tasks,
+        currentPage: currentPage,
+        status: data.status,
+        tasksQuantity: parseInt(data.message.total_task_count)
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+  export const filterEmail = () =>
+  async (dispatch, getState) => {
+    const { currentPage } = getState();
+    try {
+      const data = await API.filterEmail(currentPage);
+      dispatch({
+        type: SORT_EMAIL,
         payload: data.message.tasks,
         currentPage: currentPage,
         status: data.status,

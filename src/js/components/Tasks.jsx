@@ -1,9 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getData, selectPage } from "../actions/index";
+import { getData, selectPage, filterEmail } from "../actions/index";
 import { selectors } from "../selectors/index";
-import RenderPageNumbers from "./PageNumbers";
-import PropTypes from 'prop-types';
+import PageNumbers from "./PageNumbers";
+import SortByEmail from "./SortByEmail";
+import PropTypes from "prop-types";
 
 
 class ConnectedPosts extends React.Component {
@@ -12,7 +13,8 @@ class ConnectedPosts extends React.Component {
     this.props.getData();
   }
 
-  handleClick = event => this.props.selectPage(parseInt(event.target.id, 10));
+  selectPage = event => this.props.selectPage(parseInt(event.target.id, 10));
+  filterEmail = () => this.props.filterEmail();
 
 
   render() {
@@ -26,7 +28,8 @@ class ConnectedPosts extends React.Component {
             <p><strong>task:</strong> {el.text}</p>
           </li>
         ))}
-          <RenderPageNumbers handleClick={this.handleClick} pages={this.props.pages}/>
+          <SortByEmail filterEmail={this.filterEmail}/>
+          <PageNumbers selectPage={this.selectPage} pages={this.props.pages}/>
       </ul>
     )
   }
@@ -43,7 +46,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   getData: () => dispatch(getData()),
-  selectPage: page => dispatch(selectPage(page))
+  selectPage: page => dispatch(selectPage(page)),
+  filterEmail: () => dispatch(filterEmail())
 });
 
 
