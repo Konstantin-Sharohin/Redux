@@ -1,36 +1,56 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getData, selectPage, sortByEmail } from "../actions/index";
+import { getData, selectPage, sortByEmail, sortByUsername } from "../actions/index";
 import { selectors } from "../selectors/index";
 import PageNumbers from "./PageNumbers";
 import SortByEmail from "./SortByEmail";
+import SortByUsername from "./SortByUsername";
 import PropTypes from "prop-types";
 
 
 class ConnectedPosts extends React.Component {
+constructor() {
+  super();
+  this.state = {
+    isLoading: true
+  };
+}
+  
 
   componentDidMount = () => {
-    this.props.getData();
+    this.props.getData().then(() => this.setState({ isLoading: false }));
   }
 
   selectPage = event => this.props.selectPage(parseInt(event.target.id, 10));
-  filterEmail = () => this.props.filterEmail();
+  sortEmail = () => this.props.sortEmail();
+  sortUsername = () => this.props.sortUsername();
 
 
   render() {
+    const done = {color:"#3a9c3a"},
+            inprogress = {color:"#4949aa"};
     return (
-      <ul className="list-group list-group-flush">
-        {this.props.remoteTasks.map((el, index) => (
-          <li className="list-group-item" key={index}>
-            <p><strong>id:</strong> {el.id}</p>
-            <p><strong>username:</strong> {el.username}</p>
-            <p><strong>email:</strong> {el.email}</p>
-            <p><strong>task:</strong> {el.text}</p>
-          </li>
-        ))}
-          <SortByEmail filterEmail={this.filterEmail}/>
-          <PageNumbers selectPage={this.selectPage} pages={this.props.pages}/>
-      </ul>
+      this.state.isLoading ? 
+        <div className="spinner-border text-info" style={{"margin": "50% 60%"}}></div>
+        
+      : 
+        <ul className="list-group list-group-flush">
+          {this.props.remoteTasks.map((el, index) => {
+            const statusStyle = el.status === 0 ? inprogress : done,
+            statusText = el.status === 0 ? "In progress" : "Done";
+
+            return (<li className="list-group-item" key={index}>
+              <p><strong>id:</strong> {el.id}</p>
+              <p><strong>username:</strong> {el.username}</p>
+              <p><strong>email:</strong> {el.email}</p>
+              <p><strong>task:</strong> {el.text}</p>
+              <p><strong>status:</strong> <strong><span style={statusStyle}>{statusText}</span></strong></p>
+            </li>)
+          })}
+            <SortByUsername sortUsername={this.sortUsername}/>
+            <SortByEmail sortEmail={this.sortEmail}/>
+            <PageNumbers selectPage={this.selectPage} pages={this.props.pages} currentPage={this.props.currentPage} tasksQuantity={this.props.tasksQuantity}/>
+        </ul>
     )
   }
 
@@ -47,7 +67,8 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
   getData: () => dispatch(getData()),
   selectPage: page => dispatch(selectPage(page)),
-  sortByEmail: () => dispatch(sortByEmail())
+  sortByEmail: () => dispatch(sortByEmail()),
+  sortByUsername: () => dispatch(sortByUsername())
 });
 
 

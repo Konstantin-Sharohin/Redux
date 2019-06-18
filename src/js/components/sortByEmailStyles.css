@@ -1,7 +1,4 @@
-.sort-email {
-    position: absolute;
-    top: 80vh;
-    left: -70px;
+.sort-email, .sort-username {
     background: rgb(212, 206, 119);
     box-shadow: 0 7px 7px rgba(0, 0, 0, 0.25);
     color: rgb(100, 92, 92);
@@ -15,21 +12,33 @@
     outline: none;
   }
 
-  .sort-email:active {
+  .sort-username {
+    position: absolute;
+    top: 400px;
+    left: -70px;
+  }
+
+  .sort-email {
+    position: absolute;
+    top: 500px;
+    left: -70px;
+  }
+
+  .sort-email:active, .sort-username:active {
     top: 80.3vh;
     box-shadow: none;
     transition: top 0.5s;
     outline: none;
   }
 
-  .sort-email:hover {
+  .sort-email:hover, .sort-username:hover {
     background: rgb(85, 85, 85);
     color: rgb(255, 255, 255);
     outline: none;
     transition: background 1s, color 1s;
   }
 
-  .sort-email-title {
+  .sort-email-title, .sort-username-title {
     display: inline-block;
     font-size: 0.6em;
   }

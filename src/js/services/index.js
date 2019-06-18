@@ -68,6 +68,20 @@ class API {
 
     return data;
   };
+
+
+  async sortByUsername(page) {
+    const url = `${API_ENDPOINT}?developer=Konstantin&page=${page}&sort_field=username`;
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error(`Connection failed, HTTP status ${response.status}`);
+    }
+
+    const data = await response.json();
+
+    return data;
+  };
   
 
 }
