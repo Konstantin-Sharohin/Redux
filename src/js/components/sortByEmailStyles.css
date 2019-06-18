@@ -24,8 +24,15 @@
     left: -70px;
   }
 
-  .sort-email:active, .sort-username:active {
-    top: 80.3vh;
+  .sort-email:active {
+    top: 501px;
+    box-shadow: none;
+    transition: top 0.5s;
+    outline: none;
+  }
+
+  .sort-username:active {
+    top: 401px;
     box-shadow: none;
     transition: top 0.5s;
     outline: none;

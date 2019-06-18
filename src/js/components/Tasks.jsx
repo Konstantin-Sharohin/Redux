@@ -15,15 +15,12 @@ constructor() {
     isLoading: true
   };
 }
-  
 
   componentDidMount = () => {
     this.props.getData().then(() => this.setState({ isLoading: false }));
   }
 
   selectPage = event => this.props.selectPage(parseInt(event.target.id, 10));
-  sortEmail = () => this.props.sortEmail();
-  sortUsername = () => this.props.sortUsername();
 
 
   render() {
@@ -47,8 +44,8 @@ constructor() {
               <p><strong>status:</strong> <strong><span style={statusStyle}>{statusText}</span></strong></p>
             </li>)
           })}
-            <SortByUsername sortUsername={this.sortUsername}/>
-            <SortByEmail sortEmail={this.sortEmail}/>
+            <SortByUsername sortUsername={this.props.sortByUsername}/>
+            <SortByEmail sortEmail={this.props.sortByEmail}/>
             <PageNumbers selectPage={this.selectPage} pages={this.props.pages} currentPage={this.props.currentPage} tasksQuantity={this.props.tasksQuantity}/>
         </ul>
     )
