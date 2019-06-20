@@ -32,9 +32,10 @@ export const putData = task =>
   };
 
 
-export const selectPage = (page) =>
+export const selectPage = (event) =>
   async (dispatch) => {
     try {
+      const page = parseInt(event.target.id);
       const data = await API.selectPage(page);
       dispatch({
         type: SELECT_PAGE,

@@ -6,6 +6,7 @@ import PageNumbers from "./PageNumbers";
 import SortByEmail from "./SortByEmail";
 import SortByUsername from "./SortByUsername";
 import PropTypes from "prop-types";
+import Spinner from 'react-bootstrap/Spinner'
 
 
 class ConnectedPosts extends React.Component {
@@ -20,23 +21,20 @@ constructor() {
     this.props.getData().then(() => this.setState({ isLoading: false }));
   }
 
-  selectPage = event => this.props.selectPage(parseInt(event.target.id, 10));
-
-
   render() {
     const done = {color:"#3a9c3a"},
-            inprogress = {color:"#4949aa"};
+          inprogress = {color:"#4949aa"};
     return (
       this.state.isLoading ? 
-        <div className="spinner-border text-info" style={{"margin": "50% 60%"}}></div>
+      <Spinner animation="border" variant="secondary" />
         
       : 
-        <ul className="list-group list-group-flush">
+        <ul className="list-group list-group-flush col-md-12">
           {this.props.remoteTasks.map((el, index) => {
             const statusStyle = el.status === 0 ? inprogress : done,
             statusText = el.status === 0 ? "In progress" : "Done";
 
-            return (<li className="list-group-item" key={index}>
+            return (<li className="list-group-item" key={index} style={{"wordBreak": "break-all"}}>
               <p><strong>id:</strong> {el.id}</p>
               <p><strong>username:</strong> {el.username}</p>
               <p><strong>email:</strong> {el.email}</p>
@@ -46,7 +44,7 @@ constructor() {
           })}
             <SortByUsername sortUsername={this.props.sortByUsername}/>
             <SortByEmail sortEmail={this.props.sortByEmail}/>
-            <PageNumbers selectPage={this.selectPage} pages={this.props.pages} currentPage={this.props.currentPage} tasksQuantity={this.props.tasksQuantity}/>
+            <PageNumbers/>
         </ul>
     )
   }
