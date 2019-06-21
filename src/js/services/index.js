@@ -59,6 +59,7 @@ class API {
 
     const formData = new FormData();
     formData.append("text", data.text);
+    formData.append("token", data.token);
 
     const fetchInit = {
       method: 'POST',
