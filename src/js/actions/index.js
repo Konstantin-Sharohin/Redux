@@ -1,4 +1,4 @@
-import { GET_DATA, PUT_DATA, SELECT_PAGE, SORT_EMAIL, SORT_USERNAME } from "../constants/action-types";
+import { GET_DATA, PUT_DATA, UPDATE_DATA, SELECT_PAGE, SORT_EMAIL, SORT_USERNAME, AUTHORIZATION } from "../constants/action-types";
 import API from "../services/index";
 
 export const getData = () =>
@@ -9,7 +9,7 @@ export const getData = () =>
         type: GET_DATA,
         payload: data.message.tasks,
         tasksQuantity: parseInt(data.message.total_task_count),
-        status: data.status
+        responseStatus: data.status
       });
     } catch (error) {
       console.error(error);
@@ -24,7 +24,21 @@ export const putData = task =>
       dispatch({ 
         type: PUT_DATA,
         payload: Array(data.message),
-        status: data.status
+        responseStatus: data.status
+       });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  export const updateData = task =>
+  async dispatch => {
+    try {
+      const data = await API.updateData(task);
+      dispatch({ 
+        type: UPDATE_DATA,
+        responseStatus: data.status
        });
     } catch (error) {
       console.error(error);
@@ -41,7 +55,7 @@ export const selectPage = (event) =>
         type: SELECT_PAGE,
         payload: data.message.tasks,
         currentPage: page,
-        status: data.status,
+        responseStatus: data.status,
         tasksQuantity: parseInt(data.message.total_task_count)
       });
     } catch (error) {
@@ -59,7 +73,7 @@ export const selectPage = (event) =>
         type: SORT_EMAIL,
         payload: data.message.tasks,
         currentPage: currentPage,
-        status: data.status,
+        responseStatus: data.status,
         tasksQuantity: parseInt(data.message.total_task_count)
       });
     } catch (error) {
@@ -76,10 +90,25 @@ export const selectPage = (event) =>
         type: SORT_USERNAME,
         payload: data.message.tasks,
         currentPage: currentPage,
-        status: data.status,
+        responseStatus: data.status,
         tasksQuantity: parseInt(data.message.total_task_count)
       });
     } catch (error) {
       console.error(error);
     }
-  }
+  };
+
+
+  export const authorization = (values) =>
+  async dispatch => {
+    try {
+      const data = await API.getToken(values);
+      dispatch({
+        type: AUTHORIZATION,
+        payload: data.message.token,
+        responseStatus: data.status
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };

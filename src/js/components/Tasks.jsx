@@ -27,7 +27,6 @@ constructor() {
     return (
       this.state.isLoading ? 
       <Spinner animation="border" variant="secondary" />
-        
       : 
         <ul className="list-group list-group-flush col-md-12">
           {this.props.remoteTasks.map((el, index) => {

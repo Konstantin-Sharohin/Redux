@@ -9,39 +9,37 @@
     border-radius: 10px;
     font-size: 18px;
     border: none;
-    outline: none;
+    outline-style: none !important;
+    user-select: none;
   }
 
   .sort-username {
     position: absolute;
-    top: 400px;
+    top: 20vh;
     left: -70px;
   }
 
   .sort-email {
     position: absolute;
-    top: 500px;
+    top: 40vh;
     left: -70px;
   }
 
-  .sort-email:active {
-    top: 501px;
+  .sort-username:active {
+    top: 21vh;
     box-shadow: none;
     transition: top 0.5s;
-    outline: none;
   }
 
-  .sort-username:active {
-    top: 401px;
+  .sort-email:active {
+    top: 41vh;
     box-shadow: none;
     transition: top 0.5s;
-    outline: none;
   }
 
   .sort-email:hover, .sort-username:hover {
     background: rgb(85, 85, 85);
     color: rgb(255, 255, 255);
-    outline: none;
     transition: background 1s, color 1s;
   }
 

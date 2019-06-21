@@ -4,6 +4,8 @@ export const selectors = {
     getCurrentPage: state => state.currentPage,
     getTasksQuantity: state => state.tasksQuantity,
     getErrors: state => state.errors,
-    getPages: state => state.pages
+    getPages: state => state.pages,
+    getToken: state => state.token,
+    getAuthorization: state => state.authorization
 }
 

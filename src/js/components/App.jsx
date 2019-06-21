@@ -2,6 +2,7 @@ import React from "react";
 import Form from "./Form";
 import Tasks from "./Tasks";
 import Navbar from "./Navbar";
+import Edit from "./Edit";
 
 const App = () => (
     <div className="row">
@@ -11,8 +12,9 @@ const App = () => (
         <Tasks /> 
       </div>
       <div className="col-md-4 offset-md-1 mt-5">
-        <h2>Add a new task</h2>
+      <h2>Add a task</h2>
         <Form />
+        <Edit />
       </div>
       
     </div>

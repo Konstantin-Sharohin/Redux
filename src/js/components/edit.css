@@ -1,9 +1,8 @@
 .edit-form {
     padding: 2em;
     margin: 2em 0;
-    background: rgba(186, 192, 153, 0.521);
+    background: rgba(223, 229, 186, 0.521);
     border-radius: 20px;
-    opacity: 0.4;
 }
 
 .form-signin {

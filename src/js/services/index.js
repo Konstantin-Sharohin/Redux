@@ -43,16 +43,35 @@ class API {
       method: 'POST',
       body: formData
     }
-
     const response = await fetch(url, fetchInit);
 
     if (!response.ok) {
       throw new Error(`Connection failed, HTTP status ${response.status}`);
     }
 
-    const data = await response.json();
+    const createData = await response.json();
+    return createData;
+  };
 
-    return data;
+
+  async updateData(data) {
+    const url = `${API_ENDPOINT}edit/${data.id}?developer=Konstantin`;
+
+    const formData = new FormData();
+    formData.append("text", data.text);
+
+    const fetchInit = {
+      method: 'POST',
+      body: formData
+    }
+    const response = await fetch(url, fetchInit);
+
+    if (!response.ok) {
+      throw new Error(`Connection failed, HTTP status ${response.status}`);
+    }
+
+    const updateData = await response.json();
+    return updateData;
   };
 
 
@@ -80,6 +99,28 @@ class API {
 
     const data = await response.json();
 
+    return data;
+  };
+
+
+  async getToken(values) {
+    const url = `${API_ENDPOINT}login?developer=Konstantin`;
+
+    const formData = new FormData();
+    formData.append("username", values.name);
+    formData.append("password", values.password);
+
+    const fetchInit = {
+      method: 'POST',
+      body: formData
+    }
+    const response = await fetch(url, fetchInit);
+
+    if (!response.ok) {
+      throw new Error(`Connection failed, HTTP status ${response.status}`);
+    }
+
+    const data = await response.json();
     return data;
   };
   
