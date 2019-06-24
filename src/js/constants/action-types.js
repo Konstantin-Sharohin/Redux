@@ -4,4 +4,5 @@ export const SELECT_PAGE = "SELECT_PAGE";
 export const SORT_EMAIL = "SORT_EMAIL";
 export const SORT_USERNAME = "SORT_USERNAME";
 export const AUTHORIZATION = "AUTHORIZATION";
+export const LOGOUT = "LOGOUT";
 export const UPDATE_DATA = "UPDATE_DATA";

@@ -53,6 +53,7 @@ class EditForm extends React.Component {
                 value={this.state.id}
                 placeholder="Type user's Id"
                 onChange={this.updateInput}
+                required
               />
               <label htmlFor="id">Type user's Id</label>
             </div>
@@ -64,6 +65,7 @@ class EditForm extends React.Component {
                 value={this.state.text}
                 placeholder="Type user's task"
                 onChange={this.updateInput}
+                required
               />
               <label htmlFor="text">Type user's task</label>
             </div>
@@ -76,8 +78,8 @@ class EditForm extends React.Component {
                   className="custom-control-input"
                   name="status"
                   value="10"
-                  checked={this.state.status === "" || this.state.status === "10"}
-                  onChange={this.updateInput} />
+                  checked={this.state.status === "10"}
+                  onChange={this.updateInput}/>
                 <label className="custom-control-label" htmlFor="statusDone">Done</label>
               </div>
               <div className="custom-control custom-radio">
@@ -87,7 +89,7 @@ class EditForm extends React.Component {
                   className="custom-control-input"
                   name="status"
                   value="0"
-                  onChange={this.updateInput} />
+                  onChange={this.updateInput}/>
                 <label className="custom-control-label" htmlFor="statusInprogress">In progress</label>
               </div>
             </div>

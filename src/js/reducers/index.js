@@ -1,4 +1,4 @@
-import { GET_DATA, SELECT_PAGE, PUT_DATA, UPDATE_DATA, SORT_EMAIL, SORT_USERNAME, AUTHORIZATION } from "../constants/action-types";
+import { GET_DATA, SELECT_PAGE, PUT_DATA, UPDATE_DATA, SORT_EMAIL, SORT_USERNAME, AUTHORIZATION, LOGOUT } from "../constants/action-types";
 
 const initialState = {
   doneTasks: [],
@@ -72,6 +72,13 @@ export default (state = initialState, action) => {
       ...state,
       token: action.payload,
       authorization: true
+    }
+
+  } else if (action.type === LOGOUT) {
+    return {
+      ...state,
+      token: "",
+      authorization: false
     }
 
   } else if (action.type === UPDATE_DATA && action.responseStatus === "ok") {

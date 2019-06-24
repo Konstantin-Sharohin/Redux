@@ -1,4 +1,4 @@
-import { GET_DATA, PUT_DATA, UPDATE_DATA, SELECT_PAGE, SORT_EMAIL, SORT_USERNAME, AUTHORIZATION } from "../constants/action-types";
+import { GET_DATA, PUT_DATA, UPDATE_DATA, SELECT_PAGE, SORT_EMAIL, SORT_USERNAME, AUTHORIZATION, LOGOUT } from "../constants/action-types";
 import API from "../services/index";
 
 export const getData = () =>
@@ -107,6 +107,18 @@ export const selectPage = (event) =>
         type: AUTHORIZATION,
         payload: data.message.token,
         responseStatus: data.status
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+
+  export const logout = () =>
+  dispatch => {
+    try {
+      dispatch({
+        type: LOGOUT
       });
     } catch (error) {
       console.error(error);
